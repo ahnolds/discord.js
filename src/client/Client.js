@@ -422,6 +422,9 @@ class Client extends BaseClient {
     if (typeof options.disableMentions !== 'string') {
       throw new TypeError('CLIENT_INVALID_OPTION', 'disableMentions', 'a string');
     }
+    if (typeof options.invalidRequestWarningInterval !== 'number' || isNaN(options.invalidRequestWarningInterval)) {
+      throw new TypeError('CLIENT_INVALID_OPTION', 'invalidRequestWarningInterval', 'a number');
+    }
     if (!Array.isArray(options.partials)) {
       throw new TypeError('CLIENT_INVALID_OPTION', 'partials', 'an Array');
     }
