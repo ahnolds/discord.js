@@ -33,6 +33,8 @@ const browser = (exports.browser = typeof window !== 'undefined');
  * @property {number} [restRequestTimeout=15000] Time to wait before cancelling a REST request, in milliseconds
  * @property {number} [restSweepInterval=60] How frequently to delete inactive request buckets, in seconds
  * (or 0 for never)
+ * @property {number} [restGlobalRateLimit=0] How many messages to allow sending per second (0 for unlimited, 50 for
+ * the standard global limit used by Discord)
  * @property {number} [retryLimit=1] How many times to retry on 5XX errors (Infinity for indefinite amount of retries)
  * @property {PresenceData} [presence] Presence data to use upon login
  * @property {WebsocketOptions} [ws] Options for the WebSocket
@@ -48,6 +50,7 @@ exports.DefaultOptions = {
   partials: [],
   restWsBridgeTimeout: 5000,
   restRequestTimeout: 15000,
+  restGlobalRateLimit: 0,
   retryLimit: 1,
   restTimeOffset: 500,
   restSweepInterval: 60,
