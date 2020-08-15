@@ -27,8 +27,8 @@ function calculateReset(reset, serverDate) {
  * Therefore, store these at file scope here rather than in the client's
  * RESTManager object.
  */
-var invalidCount = 0;
-var invalidCountResetTime = null;
+let invalidCount = 0;
+let invalidCountResetTime = null;
 
 class RequestHandler {
   constructor(manager) {
@@ -166,7 +166,7 @@ class RequestHandler {
       }
 
       // Handle retryAfter, which means we have actually hit a rate limit
-      var retryAfter = res.headers.get('retry-after');
+      let retryAfter = res.headers.get('retry-after');
       retryAfter = retryAfter ? Number(retryAfter) : -1;
       if (retryAfter > 0) {
         // If the global ratelimit header is set, that means we hit the global rate limit
