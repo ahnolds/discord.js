@@ -73,14 +73,10 @@ class RequestHandler {
 
   globalDelayFor(ms) {
     return new Promise(resolve => {
-      this.manager.client.setTimeout(
-        manager => {
-          manager.globalDelay = null;
-          resolve();
-        },
-        ms,
-        this.manager,
-      );
+      this.manager.client.setTimeout(() => {
+        this.manager.globalDelay = null;
+        resolve();
+      }, ms);
     });
   }
 
@@ -189,7 +185,7 @@ class RequestHandler {
           /*
            * This is a sublimit (e.g. 2 channel name changes/10 minutes) since the headers don't indicate a
            * route-wide rate limit. Don't update remaining or reset to avoid rate limit the whole endpoint,
-           * just set a reset time on the request itself to avodi retrying too soon.
+           * just set a reset time on the request itself to avoid retrying too soon.
            */
           res.sublimit = retryAfter;
         }
